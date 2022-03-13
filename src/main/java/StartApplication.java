@@ -14,6 +14,8 @@ public class StartApplication {
 
     public static void main(String[] args) {
 
+        //TODO cli this data
+        //TODO dto to person
         Person person = new Person("123456", LocalDate.of(2010, 3, 7), "Jean", "Dobre");
 
         RegistrySystem registrySystem = new RegistrySystemHttp(person, 500);
