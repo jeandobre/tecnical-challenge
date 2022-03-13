@@ -11,6 +11,8 @@ public final class SalesQualifiedProspect {
     private final NationalArchives nationalArchives;
     private final ProspectQualification prospectQualification;
 
+    private Boolean approved;
+
     public SalesQualifiedProspect(RegistrySystem registrySystem,
                                   NationalArchives nationalArchives,
                                   ProspectQualification prospectQualification) {
@@ -24,15 +26,14 @@ public final class SalesQualifiedProspect {
 
         Future<Boolean> future1 = pool.submit(nationalArchives);
         Future<Boolean> future2 = pool.submit(registrySystem);
-
+        this.approved = Boolean.FALSE;
         if(future1.get() && future2.get()) {
             if(pool.submit(prospectQualification).get()) {
-                System.out.println("Approved!");
-                pool.shutdown();
-                return;
+                approved = Boolean.TRUE;
             }
         }
-        System.out.println("Not Approved!");
+
+        System.out.println(approved ? "Approved!" : "Not Approved!");
         pool.shutdown();
     }
 }

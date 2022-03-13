@@ -1,7 +1,5 @@
 package domain;
 
-import common.Observer;
-
 import java.util.concurrent.Callable;
 
 public abstract class ProspectQualification implements Callable<Boolean> {

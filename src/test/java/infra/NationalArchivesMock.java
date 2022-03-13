@@ -8,15 +8,15 @@ import java.util.List;
 
 public final class NationalArchivesMock extends NationalArchives {
 
-    private final List<String> archives;
+    private final List<String> judicialFecords;
 
     public NationalArchivesMock(Person person) {
         super(person);
-        this.archives = Arrays.asList("123456", "748954", "14567", "154678", "157877", "14878");
+        this.judicialFecords = Arrays.asList("748954", "14567", "154678", "157877", "14878");
     }
 
     @Override
-    public Boolean call() throws Exception {
-        return true;
+    public Boolean call() {
+        return !this.judicialFecords.contains(person.nationalIdNumber());
     }
 }
