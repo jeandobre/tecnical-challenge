@@ -1,31 +1,22 @@
 package application;
 
-import common.Subject;
 import domain.NationalArchives;
-import domain.Person;
 import domain.ProspectQualification;
 import domain.RegistrySystem;
-import infra.NationalArchivesHttp;
-import infra.ProspectQualificationHttp;
-import infra.RegistrySystemHttp;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.*;
 
-public class SalesQualifiedProspect {
+public final class SalesQualifiedProspect {
 
     private final RegistrySystem registrySystem;
     private final NationalArchives nationalArchives;
     private final ProspectQualification prospectQualification;
 
-    public SalesQualifiedProspect(Person person) {
-        super();
-        nationalArchives = new NationalArchivesHttp(person);
-        registrySystem = new RegistrySystemHttp(person);
-        prospectQualification = new ProspectQualificationHttp(person);
+    public SalesQualifiedProspect(RegistrySystem registrySystem,
+                                  NationalArchives nationalArchives,
+                                  ProspectQualification prospectQualification) {
+        this.registrySystem = registrySystem;
+        this.nationalArchives = nationalArchives;
+        this.prospectQualification = prospectQualification;
     }
 
     public void prospect() throws ExecutionException, InterruptedException {
