@@ -1,31 +1,12 @@
 package domain;
 
-import common.Observer;
+import java.util.concurrent.Callable;
 
-public abstract class NationalArchives implements Observer {
+public abstract class NationalArchives implements Callable<Boolean> {
 
-    private Boolean hasJudicialRecord;
-    private Person person;
+    protected Person person;
 
     protected NationalArchives(Person person) {
         this.person = person;
-        this.hasJudicialRecord = Boolean.FALSE;
-    }
-
-    @Override
-    public void run() {
-
-        System.out.println("Begin Registry ID system");
-        this.hookHttpRequest(person);
-    }
-
-    public Boolean isValid() {
-        return this.hasJudicialRecord;
-    }
-
-    protected abstract void hookHttpRequest(Person person);
-
-    protected void personHasJudicialRecord() {
-        this.hasJudicialRecord = Boolean.TRUE;
     }
 }

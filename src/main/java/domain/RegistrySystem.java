@@ -1,30 +1,12 @@
 package domain;
 
-import common.Observer;
+import java.util.concurrent.Callable;
 
-public abstract class RegistrySystem implements Observer {
+public abstract class RegistrySystem implements Callable<Boolean> {
 
-    private Boolean exists;
-    private Person person;
+    protected Person person;
 
     protected RegistrySystem(Person person) {
         this.person = person;
-        this.exists = Boolean.FALSE;
-    }
-
-    @Override
-    public void run() {
-        System.out.println("Acessar national Archives");
-        this.hookHttpRequest(this.person);
-    }
-
-    public abstract void hookHttpRequest(Person person);
-
-    public Boolean isValid() {
-        return this.exists;
-    }
-
-    protected void personExists() {
-        this.exists = Boolean.TRUE;
     }
 }

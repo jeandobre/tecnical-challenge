@@ -10,7 +10,12 @@ public final class NationalArchivesHttp extends NationalArchives {
     }
 
     @Override
-    public void hookHttpRequest(Person person) {
-        if(person.nationalIdNumber().equals("123456")) this.personHasJudicialRecord();
+    public Boolean call() {
+        if(this.person.nationalIdNumber().equals("123456")){
+            System.out.println("[National Archives] - Approved");
+            return true;
+        }
+        System.out.println("[National Archives] - Not Approved");
+        return false;
     }
 }

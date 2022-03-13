@@ -10,8 +10,9 @@ public final class ProspectQualificationHttp extends ProspectQualification {
     }
 
     @Override
-    protected void hookHttpRequest() {
-        this.score((int) (Math.random() * 100));
-        System.out.println("Our Score: " + this.score());
+    public Boolean call() {
+        int score = ((int) (Math.random() * 100));
+        System.out.println("Our Score: " + score);
+        return score > 60;
     }
 }

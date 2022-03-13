@@ -10,7 +10,13 @@ public final class RegistrySystemHttp extends RegistrySystem {
     }
 
     @Override
-    public void hookHttpRequest(Person person) {
-        if(person.fullName().equals("Jean Dobre")) this.personExists();
+    public Boolean call() {
+        if(this.person.fullName().equals("Jean Dobre")) {
+            System.out.println("[Registry system] - Approved");
+            return true;
+        }
+
+        System.out.println("[Registry system] - Not approved");
+        return false;
     }
 }
