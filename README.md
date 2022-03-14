@@ -14,4 +14,4 @@ To run you have to:
  - mvn package
 
 Or just:
- - Open in IntelliJ as Maven project and run the StartApplication file
+ - Open in IntelliJ as Maven project and run the Main file
