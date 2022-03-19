@@ -5,13 +5,13 @@ To solve this challenge I decide to use only Java in a Maven project.
 
 With little time I decided not add to project a library as Vert.x that I never have used.
 
-Eu implementei 1 Entidade chamada pessoa e 3 validadores como serviços de domínio e um serviço de aplicação que instacia e gerencia o fluxo de threads.
+I created One Entity called Person and Three validators as domain services and one application service that instanciate and manage the threads flow.
 
-A classe main é a mais "suja" de todas e injeta os serviços de domínio da camada de infra. 
-
+The main class is the more "dirt" at all.
 
 To run you have to:
  - mvn package
+ - mvn exec:java
 
 Or just:
  - Open in IntelliJ as Maven project and run the Main file
