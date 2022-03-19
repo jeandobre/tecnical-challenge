@@ -1,6 +1,5 @@
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
-import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
@@ -37,18 +36,26 @@ public class SensorVerticle extends AbstractVerticle {
 
     private void getData(RoutingContext context) {
         logger.info("Processing HTTP request from {}", context.request().remoteAddress());
-        JsonObject payload = new JsonObject()
-            .put("uuid", uuid)
-            .put("temperature", temperature)
-            .put("timestamp", System.currentTimeMillis());
+        JsonObject payload = createPayload();
         context.response()
             .putHeader("Content-Type", "application/json")
             .setStatusCode(200)
             .end(payload.encode());
     }
 
+    private JsonObject createPayload() {
+        return new JsonObject()
+            .put("uuid", uuid)
+            .put("temperature", temperature)
+            .put("timestamp", System.currentTimeMillis());
+    }
+
     private void updateTemperature(Long id) {
         temperature = temperature + (random.nextGaussian() / 2.0d);
         logger.info("Tempeture updated: {}", temperature);
+
+        vertx
+            .eventBus()
+            .publish("temperature.updates", createPayload());
     }
 }
